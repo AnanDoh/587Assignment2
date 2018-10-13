@@ -9,57 +9,81 @@ public class TreeOperationsTest {
     @Test
     public void depthTest() {
 
-        Node<Integer> rootNode = new Node(5,null,null);
+        Node<Integer> rootNode = getNodeTree(1);
         assertEquals(0,TreeOperations.maxDepth(rootNode));
 
-        Node<Integer> newNode = new Node(10,rootNode,null);
-        // now we have a tree combines the previous tree.
-        // max depth should be 1.
-        // contents of each node should be 5 and 10.
+        rootNode = getNodeTree(2);
+        assertEquals(1,TreeOperations.maxDepth(rootNode));
 
-        // 10
-        // |
-        // 5
+        rootNode = getNodeTree(3);
+        assertEquals(2,TreeOperations.maxDepth(rootNode));
 
-        assertEquals(1,TreeOperations.maxDepth(newNode));
+        rootNode = getNodeTree(4);
+        assertEquals(2,TreeOperations.maxDepth(rootNode));
 
-        Node<Integer> nextNode = new Node(10,newNode,null);
-        // adds another node to left. depth is now 2.
-
-        // 10
-        // |
-        // 10
-        // |
-        // 5
-
-        assertEquals(2,TreeOperations.maxDepth(nextNode));
-
-        newNode = new Node(10,rootNode,rootNode);
-        nextNode = new Node(7,null,newNode);
-
-        // 	  7
-        //  /   \
-        // 	    10
-        //   /    \
-        //  5	   5
-
-        assertEquals(2,TreeOperations.maxDepth(nextNode));
-
-        ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(nextNode);
+        ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
         ArrayList<Integer> integerList = convertToContentList(nodeList);
 
         printIntegerArrayList(integerList);
     
     }
 
-    private Node<Integer> getNodeTree1()
+    private Node<Integer> getNodeTree(int treeNum)
     {
-    	Node<Integer> rootNode = new Node(5,null,null);
-    	// depth is 0
-    	// contents are 5
-    	//    5
-    	//  /   \
-    	return rootNode;
+    	switch(treeNum) {
+    		case 1:
+    		{
+		    	Node<Integer> rootNode = new Node(5,null,null);
+		    	// depth is 0
+		    	// contents are 5
+		    	//    5
+		    	//  /   \
+		    	return rootNode;
+	    	}
+
+	    	case 2:
+	    	{
+	    		Node<Integer> rootNode = new Node(5,null,null);
+	    		rootNode = new Node(10,rootNode,null);
+		    	// depth is 1
+		    	// contents are 5, 10
+		    	//    10
+		    	//  /   \
+		    	// 5   
+		    	return rootNode;
+	    	}
+
+	    	case 3:
+	    	{
+	    		Node<Integer> rootNode = new Node(5,null,null);
+	    		rootNode = new Node(10,rootNode,null);
+	    		rootNode = new Node(7,rootNode,null);
+	    		// depth is 2
+		    	// contents are 7, 10, 5
+		    	//     7
+		    	//   /   \
+		    	//  10
+		    	//  /
+		    	// 5 
+		    	return rootNode;
+	    	}
+
+	    	case 4:
+	    	{
+	    		Node<Integer> rootNode = new Node(5,null,null);
+	    		rootNode = new Node(10,rootNode,rootNode);
+	    		rootNode = new Node(10,rootNode,null);
+	    		// depth is 2
+		    	// contents are 10, 10, 5, 5
+		    	//     10
+		    	//   /   \
+		    	//  10
+		    	// /  \
+		    	// 5  5
+		    	return rootNode;
+	    	}
+    	}
+    	return null;
     }
 
     private ArrayList<Integer> convertToContentList(ArrayList<Node<Integer>> originalList)
