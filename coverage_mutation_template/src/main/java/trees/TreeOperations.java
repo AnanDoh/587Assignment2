@@ -3,6 +3,7 @@ import java.util.Queue;
 import java.util.LinkedList; 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class TreeOperations {
 
@@ -46,6 +47,34 @@ public class TreeOperations {
     	};
 
     	return nodes;
+    }
+
+    public static ArrayList<Node> preorderTravseral(final Node root)
+    {
+		ArrayList<Node> nodes = new ArrayList<> ();
+		Stack<Node> nodeStack = new Stack<> ();
+		nodeStack.push(root);
+		dfs(nodes, nodeStack);
+		return nodes;
+    }
+
+    public static void dfs(ArrayList<Node> nodes, Stack<Node> nodeStack)
+    {
+    	Node currentNode = nodeStack.pop();
+    	nodes.add(currentNode);
+
+    	if (currentNode.left != null)
+    	{
+    		nodeStack.push(currentNode.left);
+    		dfs(nodes, nodeStack);
+    	}
+
+    	if (currentNode.right != null)
+    	{
+    		nodeStack.push(currentNode.right);
+    		dfs(nodes, nodeStack);
+    	}
+
     }
 
 }
