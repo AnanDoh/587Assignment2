@@ -69,36 +69,26 @@ public class TreeOperations {
 
     }
 
-/*
+
     public static int maxDepth(final Node root)
     {
     	int depth = 0;
     	int unexploredNodesInLayer = 0;
+    	int nodesInNextLayer = 0;
 
     	Queue<Node> nodeQueue = new LinkedList<> (); 
     	ArrayList<Node> nodes = new ArrayList<> ();
 
     	if (root == null)
-    		return nodes;
+    		return depth;
     	else 
+    	{
+    		nodeQueue.add(root);
     		unexploredNodesInLayer++;
-
-    	if (root.left != null)
-    	{
-    		nodeQueue.add(root.left);
-    	}
-
-    	if (root.right != null)
-    	{
-    		nodeQueue.add(root.right);
     	}
 
     	while (!nodeQueue.isEmpty())
     	{
-    		unexploredNodesInLayer--;
-    		if (unexploredNodesInLayer == 0)
-    			depth++;
-
     		Node newNode = nodeQueue.remove();
     		nodes.add(newNode);
 
@@ -106,21 +96,32 @@ public class TreeOperations {
     		if (newNode.contents == target.contents)
     			return true;
     		*/
-/*
+
 	    	if (newNode.left != null)
 	    	{
 	    		nodeQueue.add(newNode.left);
+	    		nodesInNextLayer++;
+
 	    	}
 
 	    	if (newNode.right != null)
 	    	{
 	    		nodeQueue.add(newNode.right);
+	    		nodesInNextLayer++;
 	    	}
+
+	    	unexploredNodesInLayer--;
+    		if (unexploredNodesInLayer == 0)
+    		{
+    			depth++;
+    			unexploredNodesInLayer = nodesInNextLayer;
+    			nodesInNextLayer = 0;
+    		}
     	};
 
-    	return maxDepth;
+    	return depth;
     }
 
-*/
+
 
 }
