@@ -20,11 +20,14 @@ public class TreeOperationsTest {
         // contents of each node should be 5 and 10.
         assertEquals(1,TreeOperations.maxDepth(newNode));
 
+        ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(newNode);
+        ArrayList<Integer> integerList = convertToContentList(nodeList);
 
+        printIntegerArrayList(integerList);
     
     }
 
-    public ArrayList<Integer> convertToContentList(ArrayList<Node<Integer>> originalList)
+    private ArrayList<Integer> convertToContentList(ArrayList<Node<Integer>> originalList)
     {
     	ArrayList<Integer> newList = new ArrayList<> ();
     	for (int i = 0; i < originalList.size(); i++)
@@ -32,5 +35,13 @@ public class TreeOperationsTest {
     		newList.add(originalList.get(i).contents);
     	}
     	return newList;
+    }
+
+    private void printIntegerArrayList(ArrayList<Integer> originalList)
+    {
+    	for (int i = 0; i < originalList.size(); i++)
+    	{
+    		System.out.println(originalList.get(i));
+    	}
     }
 }
