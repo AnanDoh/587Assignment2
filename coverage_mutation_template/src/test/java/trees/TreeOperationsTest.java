@@ -21,11 +21,17 @@ public class TreeOperationsTest {
         rootNode = getNodeTree(4);
         assertEquals(2,TreeOperations.maxDepth(rootNode));
 
-        ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
-        ArrayList<Integer> integerList = convertToContentList(nodeList);
-
-        printIntegerArrayList(integerList);
+        rootNode = getNodeTree(5);
+        assertEquals(1,TreeOperations.maxDepth(rootNode));
     
+    }
+
+    private void testContents()
+    {
+    	Node<Integer> rootNode = getNodeTree(4);
+    	ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
+        ArrayList<Integer> integerList = convertToContentList(nodeList);
+        printIntegerArrayList(integerList);
     }
 
     private Node<Integer> getNodeTree(int treeNum)
@@ -82,6 +88,21 @@ public class TreeOperationsTest {
 		    	// 5  5
 		    	return rootNode;
 	    	}
+
+	    	case 5:
+	    	{
+	    		Node<Integer> rootNode = new Node(5,null,null);
+	    		Node<Integer> otherNode = new Node(10,null,null);
+	    		rootNode = new Node(10,otherNode,rootNode);
+	    		// depth is 1
+		    	// contents are 10, 10, 5
+		    	//     10
+		    	//   /   \
+		    	//  10	 5
+		    	// /  \ / \
+		    	return rootNode;
+	    	}
+
     	}
     	return null;
     }
