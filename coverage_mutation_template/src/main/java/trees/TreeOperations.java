@@ -41,7 +41,7 @@ public class TreeOperations {
     	return nodes;
     }
 
-    public static ArrayList<Node> preorderTravseral(final Node root)
+    public static ArrayList<Node> preorderTraversal(final Node root)
     {
 		ArrayList<Node> nodes = new ArrayList<> ();
 		Stack<Node> nodeStack = new Stack<> ();
