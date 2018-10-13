@@ -1,43 +1,51 @@
 package trees;
 import java.util.Queue; 
 import java.util.LinkedList; 
+import java.util.ArrayList;
+import java.util.List;
 
 public class TreeOperations {
-    // TODO: write any needed code here
-    Boolean breadthfirstSearch(Node target, Node head)
+
+    public static ArrayList<Node> bfs(final Node root)
     {
     	Queue<Node> nodeQueue = new LinkedList<> (); 
-    	if (head == null)
-    		return false;
+    	ArrayList<Node> nodes = new ArrayList<> ();
 
-    	if (head.left != null)
+    	if (root == null)
+    		return nodes;
+
+    	if (root.left != null)
     	{
-    		nodeQueue.add(head.left);
+    		nodeQueue.add(root.left);
     	}
 
-    	if (head.right != null)
+    	if (root.right != null)
     	{
-    		nodeQueue.add(head.right);
+    		nodeQueue.add(root.right);
     	}
 
     	while (!nodeQueue.isEmpty())
     	{
     		Node newNode = nodeQueue.remove();
+    		nodes.add(newNode);
 
+    		/*
     		if (newNode.contents == target.contents)
     			return true;
+    		*/
 
 	    	if (newNode.left != null)
 	    	{
-	    		nodeQueue.add(head.left);
+	    		nodeQueue.add(newNode.left);
 	    	}
 
 	    	if (newNode.right != null)
 	    	{
-	    		nodeQueue.add(head.right);
+	    		nodeQueue.add(newNode.right);
 	    	}
     	};
 
-    	return false;
+    	return nodes;
     }
+
 }
