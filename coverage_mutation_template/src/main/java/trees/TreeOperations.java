@@ -7,10 +7,10 @@ import java.util.Stack;
 
 public class TreeOperations {
 
-    public static ArrayList<Node> bfs(final Node root)
+    public static <A> ArrayList<Node<A>> bfs(final Node<A> root)
     {
-    	Queue<Node> nodeQueue = new LinkedList<> (); 
-    	ArrayList<Node> nodes = new ArrayList<> ();
+    	Queue<Node<A>> nodeQueue = new LinkedList<> (); 
+    	ArrayList<Node<A>> nodes = new ArrayList<> ();
 
     	if (root == null)
     		return nodes;
@@ -19,7 +19,7 @@ public class TreeOperations {
 
     	while (!nodeQueue.isEmpty())
     	{
-    		Node newNode = nodeQueue.remove();
+    		Node<A> newNode = nodeQueue.remove();
     		nodes.add(newNode);
 
     		/*
@@ -41,18 +41,18 @@ public class TreeOperations {
     	return nodes;
     }
 
-    public static ArrayList<Node> preorderTraversal(final Node root)
+    public static <A> ArrayList<Node<A>> preorderTraversal(final Node<A> root)
     {
-		ArrayList<Node> nodes = new ArrayList<> ();
-		Stack<Node> nodeStack = new Stack<> ();
+		ArrayList<Node<A>> nodes = new ArrayList<> ();
+		Stack<Node<A>> nodeStack = new Stack<> ();
 		nodeStack.push(root);
 		dfs(nodes, nodeStack);
 		return nodes;
     }
 
-    public static void dfs(ArrayList<Node> nodes, Stack<Node> nodeStack)
+    public static <A> void dfs(ArrayList<Node<A>> nodes, Stack<Node<A>> nodeStack)
     {
-    	Node currentNode = nodeStack.pop();
+    	Node<A> currentNode = nodeStack.pop();
     	nodes.add(currentNode);
 
     	if (currentNode.left != null)
@@ -70,14 +70,14 @@ public class TreeOperations {
     }
 
 
-    public static int maxDepth(final Node root)
+    public static <A> int maxDepth(final Node<A> root)
     {
     	int depth = -1;
     	int unexploredNodesInLayer = 0;
     	int nodesInNextLayer = 0;
 
-    	Queue<Node> nodeQueue = new LinkedList<> (); 
-    	ArrayList<Node> nodes = new ArrayList<> ();
+    	Queue<Node<A>> nodeQueue = new LinkedList<> (); 
+    	ArrayList<Node<A>> nodes = new ArrayList<> ();
 
     	if (root == null)
     		return depth;
@@ -89,7 +89,7 @@ public class TreeOperations {
 
     	while (!nodeQueue.isEmpty())
     	{
-    		Node newNode = nodeQueue.remove();
+    		Node<A> newNode = nodeQueue.remove();
     		nodes.add(newNode);
 
     		/*
