@@ -72,7 +72,7 @@ public class TreeOperations {
 
     public static int maxDepth(final Node root)
     {
-    	int depth = 0;
+    	int depth = -1;
     	int unexploredNodesInLayer = 0;
     	int nodesInNextLayer = 0;
 
