@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TreeOperations.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trees</a> &gt; <a href="index.source.html" class="el_package">trees</a> &gt; <span class="el_source">TreeOperations.java</span></div><h1>TreeOperations.java</h1><pre class="source lang-java linenums">package trees;
+import java.util.Queue; 
+import java.util.LinkedList; 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+<span class="nc" id="L8">public class TreeOperations {</span>
+
+    public static &lt;A&gt; ArrayList&lt;Node&lt;A&gt;&gt; bfs(final Node&lt;A&gt; root)
+    {
+<span class="fc" id="L12">    	Queue&lt;Node&lt;A&gt;&gt; nodeQueue = new LinkedList&lt;&gt; (); </span>
+<span class="fc" id="L13">    	ArrayList&lt;Node&lt;A&gt;&gt; nodes = new ArrayList&lt;&gt; ();</span>
+
+<span class="fc bfc" id="L15" title="All 2 branches covered.">    	if (root != null)</span>
+<span class="fc" id="L16">    		nodeQueue.add(root);</span>
+
+<span class="fc bfc" id="L18" title="All 2 branches covered.">    	while (!nodeQueue.isEmpty())</span>
+    	{
+<span class="fc" id="L20">    		Node&lt;A&gt; newNode = nodeQueue.remove();</span>
+<span class="fc" id="L21">    		nodes.add(newNode);</span>
+
+    		/*
+    		if (newNode.contents == target.contents)
+    			return true;
+    		*/
+
+<span class="fc bfc" id="L28" title="All 2 branches covered.">	    	if (newNode.left != null)</span>
+	    	{
+<span class="fc" id="L30">	    		nodeQueue.add(newNode.left);</span>
+	    	}
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">	    	if (newNode.right != null)</span>
+	    	{
+<span class="fc" id="L35">	    		nodeQueue.add(newNode.right);</span>
+	    	}
+<span class="fc" id="L37">    	};</span>
+
+<span class="fc" id="L39">    	return nodes;</span>
+    }
+
+    public static &lt;A&gt; ArrayList&lt;Node&lt;A&gt;&gt; preorderTraversal(final Node&lt;A&gt; root)
+    {
+<span class="fc" id="L44">		ArrayList&lt;Node&lt;A&gt;&gt; nodes = new ArrayList&lt;&gt; ();</span>
+<span class="fc" id="L45">		Stack&lt;Node&lt;A&gt;&gt; nodeStack = new Stack&lt;&gt; ();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		if (root != null)</span>
+		{
+<span class="fc" id="L48">			nodeStack.push(root);</span>
+<span class="fc" id="L49">			dfs(nodes, nodeStack);</span>
+		}
+<span class="fc" id="L51">		return nodes;</span>
+    }
+
+    public static &lt;A&gt; void dfs(ArrayList&lt;Node&lt;A&gt;&gt; nodes, Stack&lt;Node&lt;A&gt;&gt; nodeStack)
+    {
+<span class="fc" id="L56">    	Node&lt;A&gt; currentNode = nodeStack.pop();</span>
+<span class="fc" id="L57">    	nodes.add(currentNode);</span>
+
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    	if (currentNode.left != null)</span>
+    	{
+<span class="fc" id="L61">    		nodeStack.push(currentNode.left);</span>
+<span class="fc" id="L62">    		dfs(nodes, nodeStack);</span>
+    	}
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    	if (currentNode.right != null)</span>
+    	{
+<span class="fc" id="L67">    		nodeStack.push(currentNode.right);</span>
+<span class="fc" id="L68">    		dfs(nodes, nodeStack);</span>
+    	}
+
+<span class="fc" id="L71">    }</span>
+
+
+    public static &lt;A&gt; int maxDepth(final Node&lt;A&gt; root)
+    {
+<span class="fc" id="L76">    	int depth = 0;</span>
+<span class="fc" id="L77">    	int unexploredNodesInLayer = 0;</span>
+<span class="fc" id="L78">    	int nodesInNextLayer = 0;</span>
+
+<span class="fc" id="L80">    	Queue&lt;Node&lt;A&gt;&gt; nodeQueue = new LinkedList&lt;&gt; (); </span>
+<span class="fc" id="L81">    	ArrayList&lt;Node&lt;A&gt;&gt; nodes = new ArrayList&lt;&gt; ();</span>
+
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    	if (root != null)</span>
+    	{
+<span class="fc" id="L85">    		nodeQueue.add(root);</span>
+<span class="fc" id="L86">    		unexploredNodesInLayer++;</span>
+    	}
+
+<span class="fc bfc" id="L89" title="All 2 branches covered.">    	while (!nodeQueue.isEmpty())</span>
+    	{
+<span class="fc" id="L91">    		Node&lt;A&gt; newNode = nodeQueue.remove();</span>
+<span class="fc" id="L92">    		nodes.add(newNode);</span>
+
+    		/*
+    		if (newNode.contents == target.contents)
+    			return true;
+    		*/
+
+<span class="fc bfc" id="L99" title="All 2 branches covered.">	    	if (newNode.left != null)</span>
+	    	{
+<span class="fc" id="L101">	    		nodeQueue.add(newNode.left);</span>
+<span class="fc" id="L102">	    		nodesInNextLayer++;</span>
+
+	    	}
+
+<span class="fc bfc" id="L106" title="All 2 branches covered.">	    	if (newNode.right != null)</span>
+	    	{
+<span class="fc" id="L108">	    		nodeQueue.add(newNode.right);</span>
+<span class="fc" id="L109">	    		nodesInNextLayer++;</span>
+	    	}
+
+<span class="fc" id="L112">	    	unexploredNodesInLayer--;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">    		if (unexploredNodesInLayer == 0)</span>
+    		{
+<span class="fc" id="L115">    			depth++;</span>
+<span class="fc" id="L116">    			unexploredNodesInLayer = nodesInNextLayer;</span>
+<span class="fc" id="L117">    			nodesInNextLayer = 0;</span>
+    		}
+<span class="fc" id="L119">    	};</span>
+
+<span class="fc" id="L121">    	return depth;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
