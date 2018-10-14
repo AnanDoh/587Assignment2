@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TreeOperationsTest {
 
-	int numOfTrees = 6;
+	int numOfTrees = 7;
     @Test
     public void depthTest() {
 
@@ -59,17 +59,19 @@ public class TreeOperationsTest {
     {
     	switch (depthNum) {
     		case 1:
-    			return 0;
+    			return 1;
     		case 2:
-    			return 1;
+    			return 2;
     		case 3:
-    			return 2;
+    			return 3;
     		case 4:
-    			return 2;
+    			return 3;
     		case 5:
-    			return 1;
+    			return 2;
     		case 6:
-    			return 4;
+    			return 5;
+    		case 7: 
+    			return 0;
     	}
     	return 0;
     }
@@ -174,7 +176,8 @@ public class TreeOperationsTest {
 
 		    	return integerList;
     		}
-
+    		case 7:
+    			return integerList;
     	}
 
     	return null;
@@ -280,6 +283,8 @@ public class TreeOperationsTest {
 
 		    	return integerList;
     		}
+    		case 7:
+    			return integerList;
 
     	}
 
@@ -401,6 +406,8 @@ public class TreeOperationsTest {
 
 		    	return rootNode;
 	    	}
+	    	case 7:
+	    		return null;
 
     	}
     	return null;
