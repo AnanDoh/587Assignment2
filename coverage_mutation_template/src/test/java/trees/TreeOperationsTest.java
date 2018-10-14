@@ -6,51 +6,53 @@ import java.util.ArrayList;
 
 public class TreeOperationsTest {
 
+	int numOfTrees = 6;
     @Test
     public void depthTest() {
 
         Node<Integer> rootNode;
-        int currentTreeNum;
 
-        currentTreeNum = 1;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-
-        currentTreeNum = 2;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-
-        currentTreeNum = 3;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-
-        currentTreeNum = 4;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-
-        currentTreeNum = 5;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-
-        currentTreeNum = 6;
-        rootNode = getNodeTree(currentTreeNum);
-        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
-    
+        for (int i = 0; i < numOfTrees; i++)
+        {
+        	rootNode = getNodeTree(i + 1);
+        	assertEquals(getDepth(i + 1),TreeOperations.maxDepth(rootNode));
+        }
     }
 
     @Test
-    public void contentTest() 
+    public void contentBfsTest() 
     {
     	Node<Integer> rootNode;
     	ArrayList<Node<Integer>> nodeList;
     	ArrayList<Integer> integerList;
 		ArrayList<Integer> treeIntegerList;
 
-    	rootNode = getNodeTree(1);
-    	nodeList = TreeOperations.bfs(rootNode);
-        integerList = convertToContentList(nodeList);
-        treeIntegerList = getIntegerList(1);
-        assertEquals(true, testContentEquality(integerList, treeIntegerList));
+		for (int i = 0; i < numOfTrees; i++)
+		{
+	    	rootNode = getNodeTree(i + 1);
+	    	nodeList = TreeOperations.bfs(rootNode);
+	        integerList = convertToContentList(nodeList);
+	        treeIntegerList = getIntegerListBfs(i + 1);
+	        assertEquals(true, testContentEquality(integerList, treeIntegerList));
+    	}
+    }
+
+    @Test
+    public void contentDfsTest() 
+    {
+    	Node<Integer> rootNode;
+    	ArrayList<Node<Integer>> nodeList;
+    	ArrayList<Integer> integerList;
+		ArrayList<Integer> treeIntegerList;
+
+		for (int i = 0; i < numOfTrees; i++)
+		{
+	    	rootNode = getNodeTree(i + 1);
+	    	nodeList = TreeOperations.preorderTraversal(rootNode);
+	        integerList = convertToContentList(nodeList);
+	        treeIntegerList = getIntegerListDfs(i + 1);
+	        assertEquals(true, testContentEquality(integerList, treeIntegerList));
+    	}
     }
 
     private int getDepth(int depthNum)
@@ -72,7 +74,7 @@ public class TreeOperationsTest {
     	return 0;
     }
 
-    private ArrayList<Integer> getIntegerList(int arrayNum)
+    private ArrayList<Integer> getIntegerListBfs(int arrayNum)
     {
     	ArrayList<Integer> integerList = new ArrayList<> ();
 
@@ -90,8 +92,8 @@ public class TreeOperationsTest {
 
 	    	case 2:
 	    	{
-	    		Node<Integer> rootNode = new Node(5,null,null);
-	    		rootNode = new Node(10,rootNode,null);
+		    	integerList.add(10);
+				integerList.add(5);
 		    	// depth is 1
 		    	// contents are 5, 10
 		    	//    10
@@ -102,9 +104,9 @@ public class TreeOperationsTest {
 
 	    	case 3:
 	    	{
-	    		Node<Integer> rootNode = new Node(5,null,null);
-	    		rootNode = new Node(10,rootNode,null);
-	    		rootNode = new Node(7,rootNode,null);
+		    	integerList.add(7);
+				integerList.add(10);
+				integerList.add(5);
 	    		// depth is 2
 		    	// contents are 7, 10, 5
 		    	//     7
@@ -117,9 +119,10 @@ public class TreeOperationsTest {
 
 	    	case 4:
 	    	{
-	    		Node<Integer> rootNode = new Node(5,null,null);
-	    		rootNode = new Node(10,rootNode,rootNode);
-	    		rootNode = new Node(10,rootNode,null);
+		    	integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+				integerList.add(5);
 	    		// depth is 2
 		    	// contents are 10, 10, 5, 5
 		    	//     10
@@ -132,9 +135,9 @@ public class TreeOperationsTest {
 
 	    	case 5:
 	    	{
-	    		Node<Integer> rootNode = new Node(5,null,null);
-	    		Node<Integer> otherNode = new Node(10,null,null);
-	    		rootNode = new Node(10,otherNode,rootNode);
+		    	integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
 	    		// depth is 1
 		    	// contents are 10, 10, 5
 		    	//     10
@@ -146,24 +149,86 @@ public class TreeOperationsTest {
 
 	    	case 6:
 	    	{
-	    		Node<Integer> rootNode = new Node(5,null,null);
-	    		rootNode = new Node(5,rootNode,null);
-	    		rootNode = new Node(10,rootNode,rootNode);
-	    		rootNode = new Node(10,rootNode,null);
-
-	    		// depth is 2
-		    	// contents are 10, 10, 5, 5
-		    	//     10
-		    	//   /   \
-		    	//  10   
+		    	integerList.add(15);
+				integerList.add(10);
+				integerList.add(10);
+				integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+		    	// depth is 4
+		    	// contents are 15, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5
+		    	//        15  
+		    	//      /    \
+		    	//     10    10
+		    	//   /   \	 / \
+		    	//  10      10  5
+		    	// /  \     /
+		    	// 5  5     5
 		    	// /  \
 		    	// 5  5
-		    	// /
-		    	// 5
-	    		Node<Integer> copyNode = new Node(5,null,null);
-	    		copyNode = new Node(10,copyNode,copyNode);
-	    		copyNode = new Node(10,copyNode,null);
 
+		    	return integerList;
+    		}
+
+    	}
+
+    	return null;
+    }
+
+    private ArrayList<Integer> getIntegerListDfs(int arrayNum)
+    {
+    	ArrayList<Integer> integerList = new ArrayList<> ();
+
+	    switch(arrayNum) {
+			case 1:
+			{
+		    	integerList.add(5);
+
+		    	// depth is 0
+		    	// contents are 5
+		    	//    5
+		    	//  /   \
+		    	return integerList;
+	    	}
+
+	    	case 2:
+	    	{
+		    	integerList.add(10);
+				integerList.add(5);
+		    	// depth is 1
+		    	// contents are 5, 10
+		    	//    10
+		    	//  /   \
+		    	// 5   
+		    	return integerList;
+	    	}
+
+	    	case 3:
+	    	{
+		    	integerList.add(7);
+				integerList.add(10);
+				integerList.add(5);
+	    		// depth is 2
+		    	// contents are 7, 10, 5
+		    	//     7
+		    	//   /   \
+		    	//  10
+		    	//  /
+		    	// 5 
+		    	return integerList;
+	    	}
+
+	    	case 4:
+	    	{
+		    	integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+				integerList.add(5);
 	    		// depth is 2
 		    	// contents are 10, 10, 5, 5
 		    	//     10
@@ -171,8 +236,36 @@ public class TreeOperationsTest {
 		    	//  10
 		    	// /  \
 		    	// 5  5
+		    	return integerList;
+	    	}
 
-		    	rootNode = new Node(15,rootNode,copyNode);
+	    	case 5:
+	    	{
+		    	integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+	    		// depth is 1
+		    	// contents are 10, 10, 5
+		    	//     10
+		    	//   /   \
+		    	//  10	 5
+		    	// /  \ / \
+		    	return integerList;
+	    	}
+
+	    	case 6:
+	    	{
+		    	integerList.add(15);
+				integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(5);
+				integerList.add(10);
+				integerList.add(10);
+				integerList.add(5);
+				integerList.add(5);
 		    	// depth is 4
 		    	// contents are 15, 10, 10, 10, 10, 5, 5, 5, 5, 5
 		    	//        15  
@@ -182,8 +275,8 @@ public class TreeOperationsTest {
 		    	//  10      10  5
 		    	// /  \     /
 		    	// 5  5     5
-		    	// /
-		    	// 5
+		    	// /  \
+		    	// 5  5
 
 		    	return integerList;
     		}
@@ -303,8 +396,8 @@ public class TreeOperationsTest {
 		    	//  10      10  5
 		    	// /  \     /
 		    	// 5  5     5
-		    	// /
-		    	// 5
+		    	// /  \
+		    	// 5  5
 
 		    	return rootNode;
 	    	}
