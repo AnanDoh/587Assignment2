@@ -9,7 +9,9 @@ public class TreeOperationsTest {
     @Test
     public void depthTest() {
 
-        Node<Integer> rootNode = getNodeTree(1);
+        Node<Integer> rootNode;
+
+        rootNode = getNodeTree(1);
         assertEquals(0,TreeOperations.maxDepth(rootNode));
 
         rootNode = getNodeTree(2);
@@ -23,6 +25,9 @@ public class TreeOperationsTest {
 
         rootNode = getNodeTree(5);
         assertEquals(1,TreeOperations.maxDepth(rootNode));
+
+        rootNode = getNodeTree(6);
+        assertEquals(4,TreeOperations.maxDepth(rootNode));
     
     }
 
@@ -100,6 +105,50 @@ public class TreeOperationsTest {
 		    	//   /   \
 		    	//  10	 5
 		    	// /  \ / \
+		    	return rootNode;
+	    	}
+
+	    	case 6:
+	    	{
+	    		Node<Integer> rootNode = new Node(5,null,null);
+	    		rootNode = new Node(5,rootNode,null);
+	    		rootNode = new Node(10,rootNode,rootNode);
+	    		rootNode = new Node(10,rootNode,null);
+
+	    		// depth is 2
+		    	// contents are 10, 10, 5, 5
+		    	//     10
+		    	//   /   \
+		    	//  10   
+		    	// /  \
+		    	// 5  5
+		    	// /
+		    	// 5
+	    		Node<Integer> copyNode = new Node(5,null,null);
+	    		copyNode = new Node(10,copyNode,copyNode);
+	    		copyNode = new Node(10,copyNode,null);
+
+	    		// depth is 2
+		    	// contents are 10, 10, 5, 5
+		    	//     10
+		    	//   /   \
+		    	//  10
+		    	// /  \
+		    	// 5  5
+
+		    	rootNode = new Node(15,rootNode,copyNode);
+		    	// depth is 4
+		    	// contents are 15, 10, 10, 10, 10, 5, 5, 5, 5, 5
+		    	//        15  
+		    	//      /    \
+		    	//     10    10
+		    	//   /   \	 / \
+		    	//  10      10  5
+		    	// /  \     /
+		    	// 5  5     5
+		    	// /
+		    	// 5
+
 		    	return rootNode;
 	    	}
 
