@@ -73,17 +73,39 @@ public class TreeOperationsTest {
         printIntegerArrayList(integerList);
     }
 
-    private Node<Integer> getNodeTree(int treeNum)
+    private int getDepth(int depthNum)
     {
-    	switch(treeNum) {
+    	switch (depthNum) {
     		case 1:
-    		{
-		    	Node<Integer> rootNode = new Node(5,null,null);
+    			return 0;
+    		case 2:
+    			return 1;
+    		case 3:
+    			return 2;
+    		case 4:
+    			return 2;
+    		case 5:
+    			return 1;
+    		case 6:
+    			return 4;
+    	}
+    	return 0;
+    }
+
+    private ArrayList<Integer> getIntegerList(int arrayNum)
+    {
+    	ArrayList<Integer> integerList = new ArrayList<> ();
+
+	    switch(arrayNum) {
+			case 1:
+			{
+		    	integerList.add(5);
+
 		    	// depth is 0
 		    	// contents are 5
 		    	//    5
 		    	//  /   \
-		    	return rootNode;
+		    	return integerList;
 	    	}
 
 	    	case 2:
