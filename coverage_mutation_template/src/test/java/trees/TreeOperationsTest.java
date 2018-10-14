@@ -10,8 +10,42 @@ public class TreeOperationsTest {
     public void depthTest() {
 
         Node<Integer> rootNode;
+        int currentTreeNum;
+
+        currentTreeNum = 1;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+
+        currentTreeNum = 2;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+
+        currentTreeNum = 3;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+
+        currentTreeNum = 4;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+
+        currentTreeNum = 5;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+
+        currentTreeNum = 6;
+        rootNode = getNodeTree(currentTreeNum);
+        assertEquals(getDepth(currentTreeNum),TreeOperations.maxDepth(rootNode));
+    
+    }
+
+    @Test
+    public void contentTest() {
+
+    	Node<Integer> rootNode;
 
         rootNode = getNodeTree(1);
+    	ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
+        ArrayList<Integer> integerList = convertToContentList(nodeList);
         assertEquals(0,TreeOperations.maxDepth(rootNode));
 
         rootNode = getNodeTree(2);
