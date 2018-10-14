@@ -39,38 +39,18 @@ public class TreeOperationsTest {
     }
 
     @Test
-    public void contentTest() {
-
-    	Node<Integer> rootNode;
-
-        rootNode = getNodeTree(1);
-    	ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
-        ArrayList<Integer> integerList = convertToContentList(nodeList);
-        assertEquals(0,TreeOperations.maxDepth(rootNode));
-
-        rootNode = getNodeTree(2);
-        assertEquals(1,TreeOperations.maxDepth(rootNode));
-
-        rootNode = getNodeTree(3);
-        assertEquals(2,TreeOperations.maxDepth(rootNode));
-
-        rootNode = getNodeTree(4);
-        assertEquals(2,TreeOperations.maxDepth(rootNode));
-
-        rootNode = getNodeTree(5);
-        assertEquals(1,TreeOperations.maxDepth(rootNode));
-
-        rootNode = getNodeTree(6);
-        assertEquals(4,TreeOperations.maxDepth(rootNode));
-    
-    }
-
-    private void testContents()
+    public void contentTest() 
     {
-    	Node<Integer> rootNode = getNodeTree(4);
-    	ArrayList<Node<Integer>> nodeList = TreeOperations.bfs(rootNode);
-        ArrayList<Integer> integerList = convertToContentList(nodeList);
-        printIntegerArrayList(integerList);
+    	Node<Integer> rootNode;
+    	ArrayList<Node<Integer>> nodeList;
+    	ArrayList<Integer> integerList;
+		ArrayList<Integer> treeIntegerList;
+
+    	rootNode = getNodeTree(1);
+    	nodeList = TreeOperations.bfs(rootNode);
+        integerList = convertToContentList(nodeList);
+        treeIntegerList = getIntegerList(1);
+        assertEquals(true, testContentEquality(integerList, treeIntegerList));
     }
 
     private int getDepth(int depthNum)
@@ -117,7 +97,7 @@ public class TreeOperationsTest {
 		    	//    10
 		    	//  /   \
 		    	// 5   
-		    	return rootNode;
+		    	return integerList;
 	    	}
 
 	    	case 3:
@@ -132,7 +112,7 @@ public class TreeOperationsTest {
 		    	//  10
 		    	//  /
 		    	// 5 
-		    	return rootNode;
+		    	return integerList;
 	    	}
 
 	    	case 4:
@@ -147,7 +127,7 @@ public class TreeOperationsTest {
 		    	//  10
 		    	// /  \
 		    	// 5  5
-		    	return rootNode;
+		    	return integerList;
 	    	}
 
 	    	case 5:
@@ -161,7 +141,7 @@ public class TreeOperationsTest {
 		    	//   /   \
 		    	//  10	 5
 		    	// /  \ / \
-		    	return rootNode;
+		    	return integerList;
 	    	}
 
 	    	case 6:
@@ -205,10 +185,11 @@ public class TreeOperationsTest {
 		    	// /
 		    	// 5
 
-		    	return rootNode;
-	    	}
+		    	return integerList;
+    		}
 
     	}
+
     	return null;
     }
 
@@ -332,7 +313,7 @@ public class TreeOperationsTest {
     	return null;
     }
 
-    private <A> Boolean testContentEquality(ArrayList<Node<A>> array1, ArrayList<Node<A>>)
+    private boolean testContentEquality(ArrayList<Integer> array1, ArrayList<Integer> array2)
     {
     	if (array1.size() == array2.size())
     	{
