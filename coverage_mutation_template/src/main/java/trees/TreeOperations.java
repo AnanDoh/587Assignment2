@@ -12,9 +12,7 @@ public class TreeOperations {
     	Queue<Node<A>> nodeQueue = new LinkedList<> (); 
     	ArrayList<Node<A>> nodes = new ArrayList<> ();
 
-    	if (root == null)
-    		return nodes;
-    	else
+    	if (root != null)
     		nodeQueue.add(root);
 
     	while (!nodeQueue.isEmpty())
@@ -45,8 +43,11 @@ public class TreeOperations {
     {
 		ArrayList<Node<A>> nodes = new ArrayList<> ();
 		Stack<Node<A>> nodeStack = new Stack<> ();
-		nodeStack.push(root);
-		dfs(nodes, nodeStack);
+		if (root != null)
+		{
+			nodeStack.push(root);
+			dfs(nodes, nodeStack);
+		}
 		return nodes;
     }
 
@@ -72,16 +73,14 @@ public class TreeOperations {
 
     public static <A> int maxDepth(final Node<A> root)
     {
-    	int depth = -1;
+    	int depth = 0;
     	int unexploredNodesInLayer = 0;
     	int nodesInNextLayer = 0;
 
     	Queue<Node<A>> nodeQueue = new LinkedList<> (); 
     	ArrayList<Node<A>> nodes = new ArrayList<> ();
 
-    	if (root == null)
-    		return depth;
-    	else 
+    	if (root != null)
     	{
     		nodeQueue.add(root);
     		unexploredNodesInLayer++;
@@ -121,7 +120,5 @@ public class TreeOperations {
 
     	return depth;
     }
-
-
 
 }
